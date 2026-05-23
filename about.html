@@ -51,6 +51,9 @@
     .field-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
     .field-card { background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); padding: 38px 28px; text-align: center; transition: 0.25s ease; position: relative; top: 0; }
     .field-card:hover { top: -8px; box-shadow: var(--shadow); border-color: transparent; }
+    .field-grid.grid-3 { grid-template-columns: repeat(3, 1fr); }
+    @media (max-width: 980px) { .field-grid.grid-3 { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 600px) { .field-grid.grid-3 { grid-template-columns: 1fr; } }
     .field-card .ic { width: 72px; height: 72px; margin: 0 auto 22px; border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 2rem; background: linear-gradient(135deg, var(--navy), var(--navy-light)); color: var(--gold); }
     .field-card h3 { font-size: 1.2rem; color: var(--navy); margin-bottom: 10px; font-weight: 800; }
     .field-card p { color: var(--muted); font-size: 0.95rem; }
@@ -173,7 +176,7 @@
         <span class="eyebrow">MISSION & VISION</span>
         <h2 data-ko="미션과 비전" data-en="Mission & Vision">미션과 비전</h2>
       </div>
-      <div class="field-grid" style="grid-template-columns:repeat(3,1fr)">
+      <div class="field-grid grid-3">
         <div class="field-card">
           <div class="ic">🎯</div>
           <h3 data-ko="미션" data-en="Mission">미션</h3>
