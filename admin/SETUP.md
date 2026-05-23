@@ -123,7 +123,8 @@ admin/
 ├─ lib/
 │  ├─ supabase/                  ← Supabase 연결 (client/server/session)
 │  └─ actions/notices.ts         ← 공지 저장·수정·삭제 (서버 로직)
-├─ proxy.ts                      ← 비로그인 차단 (Next.js 16의 구 middleware)
+├─ wrangler.jsonc                ← Cloudflare 배포 설정
+├─ open-next.config.ts           ← Cloudflare(Next.js) 어댑터 설정
 ├─ supabase/setup.sql            ← DB 초기 설정 SQL
 └─ .env.local                    ← 내 Supabase 키 (비공개)
 ```

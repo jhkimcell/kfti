@@ -23,7 +23,7 @@ export async function createClient() {
             );
           } catch {
             // 서버 컴포넌트에서 호출되면 쿠키를 직접 못 바꿉니다.
-            // 세션 갱신은 middleware.ts가 처리하므로 여기서는 무시해도 됩니다.
+            // (브라우저의 Supabase 클라이언트가 세션을 자동 갱신하므로 무시해도 됩니다.)
           }
         },
       },

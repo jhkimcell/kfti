@@ -11,7 +11,8 @@ export default async function PanelLayout({
 }: {
   children: React.ReactNode;
 }) {
-  // proxy.ts가 1차로 막아주지만, 여기서도 한 번 더 확인합니다. (이중 안전장치)
+  // 보호 페이지 진입 시 로그인 여부를 확인하고, 아니면 로그인으로 보냅니다.
+  // (글 작성/수정/삭제 같은 동작도 서버 액션에서 한 번 더 확인합니다.)
   const supabase = await createClient();
   const {
     data: { user },

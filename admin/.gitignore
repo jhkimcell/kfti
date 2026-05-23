@@ -17,6 +17,11 @@
 /.next/
 /out/
 
+# cloudflare (opennext 빌드 산출물 / 로컬 비밀값)
+/.open-next/
+/.wrangler/
+.dev.vars
+
 # production
 /build
 
