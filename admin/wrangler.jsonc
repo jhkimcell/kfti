@@ -7,5 +7,10 @@
   "assets": {
     "directory": ".open-next/assets",
     "binding": "ASSETS"
+  },
+  // 공개(publishable) 값이라 여기에 넣어도 안전합니다. (실행 시점 process.env로 주입)
+  "vars": {
+    "NEXT_PUBLIC_SUPABASE_URL": "https://vemjnkustbmhlnilrfek.supabase.co",
+    "NEXT_PUBLIC_SUPABASE_ANON_KEY": "sb_publishable_eibRqfTfb-3M4ZCmqatQlg_FN6dsM7T"
   }
 }
