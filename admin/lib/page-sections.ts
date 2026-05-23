@@ -1,21 +1,24 @@
-// 사업분야/조직구성 카드 섹션 정의 + 기본 항목(처음 1회 불러오기용).
-export type SectionSlug = "research" | "org_division" | "org_support";
+// 사업분야/조직구성/후원 카드·FAQ 섹션 정의 + 기본 항목(처음 1회 불러오기용).
+export type SectionSlug = "research" | "org_division" | "org_support" | "support_faq";
 
 export type SectionConfig = {
   label: string; // 사이드바/제목
-  layout: "row" | "card"; // 공개 페이지 표시 형태
+  layout: "row" | "card" | "faq"; // 공개 페이지 표시 형태
   hasImage: boolean; // 이미지 필드 사용 여부
   hasTag: boolean; // 작은 라벨 사용 여부
+  titleLabel?: string; // 제목/본문 입력 라벨 커스텀 (FAQ=질문/답변)
+  bodyLabel?: string;
 };
 
 export const SECTIONS: Record<SectionSlug, SectionConfig> = {
   research: { label: "사업분야 — 사업", layout: "row", hasImage: true, hasTag: false },
   org_division: { label: "조직구성 — 핵심 본부", layout: "card", hasImage: false, hasTag: true },
   org_support: { label: "조직구성 — 지원조직·위원회", layout: "card", hasImage: false, hasTag: true },
+  support_faq: { label: "후원 — 자주묻는 질문", layout: "faq", hasImage: false, hasTag: false, titleLabel: "질문", bodyLabel: "답변" },
 };
 
 export function isSection(v: string): v is SectionSlug {
-  return v === "research" || v === "org_division" || v === "org_support";
+  return v === "research" || v === "org_division" || v === "org_support" || v === "support_faq";
 }
 
 type DefaultItem = {
@@ -72,5 +75,22 @@ export const DEFAULT_ITEMS: Record<SectionSlug, DefaultItem[]> = {
       bullets: "재단 비전 및 정책 방향성 검증\nK-선도국가 전략의 학술적·정책적 자문\n글로벌 위상 강화 담론 지원", image_url: "", sort_order: 3 },
     { icon: "📍", tag: "Regional Committee", title: "지역위원회", body: "",
       bullets: "지역 중심 문화 가치 공유·캠페인 전개\n지역 문화 리더 발굴 및 네트워크 운영\n지역 특화 K-컬처 사례 발굴·자산화", image_url: "", sort_order: 4 },
+  ],
+  support_faq: [
+    { icon: "", tag: "", title: "정기후원 결제 방법과 결제일이 궁금해요.",
+      body: "정기후원은 두 가지 방법으로 참여하실 수 있습니다. CMS 자동이체는 매월 5일 또는 25일 중 선택하여 등록 계좌에서 자동이체되며, 신용·체크카드는 매월 20일 등록 카드에서 자동결제됩니다. 결제가 실패하면 다음 달에 미납액이 함께 청구되며, 재단에서 전화·문자·이메일로 안내드립니다.",
+      bullets: "", image_url: "", sort_order: 1 },
+    { icon: "", tag: "", title: "자녀 이름으로 후원하고 부모 명의로 결제할 수 있나요?",
+      body: "가능합니다. 자녀 이름으로 후원하면서 결제정보는 부모님 명의로 등록하실 수 있습니다. 부모님의 성함과 결제정보를 입력하고 본인 확인 절차를 거치면 됩니다.",
+      bullets: "", image_url: "", sort_order: 2 },
+    { icon: "", tag: "", title: "정기후원 시 세액공제 혜택을 받을 수 있나요?",
+      body: "네, 재단 기부금은 지정기부금으로 인정되어 연말정산 시 세액공제 혜택을 받으실 수 있습니다. 기부금 영수증은 재단에서 발급해 드립니다.",
+      bullets: "", image_url: "", sort_order: 3 },
+    { icon: "", tag: "", title: "후원금은 어디에 사용되나요?",
+      body: "후원금은 'K-선도국가' 실현을 위한 문화 연구·교육, 대국민 문화 캠페인, 지식 자산 플랫폼 운영, 국내외 문화 협력 네트워크 등 재단의 공익사업에 소중하게 사용됩니다.",
+      bullets: "", image_url: "", sort_order: 4 },
+    { icon: "", tag: "", title: "공무원, 교사도 후원회원이 될 수 있나요?",
+      body: "네, 본 재단은 일반 비영리 재단으로 공무원·교사를 포함한 누구나 제약 없이 후원회원으로 참여하실 수 있습니다.",
+      bullets: "", image_url: "", sort_order: 5 },
   ],
 };

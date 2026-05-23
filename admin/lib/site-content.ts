@@ -9,7 +9,7 @@ export type ContentField = {
   default: string;
 };
 
-export const CONTENT_GROUPS = ["재단소개"] as const;
+export const CONTENT_GROUPS = ["재단소개", "후원"] as const;
 
 export const CONTENT_FIELDS: ContentField[] = [
   {
@@ -51,5 +51,29 @@ export const CONTENT_FIELDS: ContentField[] = [
     group: "재단소개",
     rows: 2,
     default: "공공성 · 개방 · 협력 · 미래세대를 지향한다.",
+  },
+  // ===== 후원 =====
+  {
+    key: "support_donate_url",
+    label: "후원하기 버튼 링크 (아웃링크 URL · 새 창으로 열림)",
+    group: "후원",
+    rows: 1,
+    default: "",
+  },
+  {
+    key: "support_intro",
+    label: "사업소개",
+    group: "후원",
+    rows: 5,
+    default:
+      "재단법인 K-선도국가 미래포럼은 대한민국을 세계를 주도하는 'K-선도국가'로 이끄는 문화 창달의 공공 플랫폼입니다. 여러분의 정기후원은 문화 연구·교육, 대국민 문화 캠페인, 지식 자산 플랫폼 운영, 국내외 문화 협력 네트워크 등 재단의 공익사업을 이어가는 든든한 토대가 됩니다.",
+  },
+  {
+    key: "support_benefits",
+    label: "정기후원 예우",
+    group: "후원",
+    rows: 5,
+    default:
+      "정기후원 회원께는 재단이 주최하는 다양한 행사에 우선 초대해 드립니다. 또한 후원 기간에 따른 감사 선물과 기부금 영수증 발급, 주요 사업·연구 성과 안내 등 회원만을 위한 예우를 제공합니다.",
   },
 ];
