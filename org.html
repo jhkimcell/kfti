@@ -235,7 +235,7 @@
             <div class="ic">🧠</div>
             <div><span class="role-tag">Think-Tank</span><h3>K-ThinkTank</h3></div>
           </div>
-          <p style="color:var(--muted);font-size:0.92rem;margin-bottom:6px;">국가 성장 모델 설계</p>
+          <p data-cms="org_thinktank" style="color:var(--muted);font-size:0.92rem;margin-bottom:6px;">국가 성장 모델 설계</p>
           <ul class="card-dots">
             <li>K-콘텐츠·푸드·뷰티·바이오 등 핵심 분야 역량 체계화</li>
             <li>K-선도국가 비전·로드맵 및 융합 성장 전략 연구</li>
@@ -247,7 +247,7 @@
             <div class="ic">🎬</div>
             <div><span class="role-tag">Creative</span><h3>K-컬처콘텐츠본부</h3></div>
           </div>
-          <p style="color:var(--muted);font-size:0.92rem;margin-bottom:6px;">전략 시각화 및 대중 전달</p>
+          <p data-cms="org_contents" style="color:var(--muted);font-size:0.92rem;margin-bottom:6px;">전략 시각화 및 대중 전달</p>
           <ul class="card-dots">
             <li>연구 성과·담론을 영상·다큐·웹툰 등 공익 콘텐츠로 제작</li>
             <li>국가 브랜드 글로벌 경쟁력 제고 전략 홍보</li>
@@ -259,7 +259,7 @@
             <div class="ic">🤝</div>
             <div><span class="role-tag">Platform</span><h3>K-컬처시민본부</h3></div>
           </div>
-          <p style="color:var(--muted);font-size:0.92rem;margin-bottom:6px;">가치 공유 및 정착</p>
+          <p data-cms="org_citizen" style="color:var(--muted);font-size:0.92rem;margin-bottom:6px;">가치 공유 및 정착</p>
           <ul class="card-dots">
             <li>시민 참여형 문화 가치 공유 프로그램 운영</li>
             <li>온·오프라인 플랫폼(Open-K 아카이브) 구축·운영</li>
@@ -375,6 +375,34 @@
           });
         });
       });
+    })();
+  </script>
+
+  <!-- ===== Supabase 페이지 내용 연동 ===== -->
+  <script>
+    (function () {
+      var SUPABASE_URL = "https://vemjnkustbmhlnilrfek.supabase.co";
+      var SUPABASE_KEY = "sb_publishable_eibRqfTfb-3M4ZCmqatQlg_FN6dsM7T";
+      var els = document.querySelectorAll("[data-cms]");
+      if (!els.length) return;
+      function esc(s) {
+        return String(s).replace(/[&<>"']/g, function (c) {
+          return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+        });
+      }
+      fetch(SUPABASE_URL + "/rest/v1/site_content?select=key,value", {
+        headers: { apikey: SUPABASE_KEY, Authorization: "Bearer " + SUPABASE_KEY },
+      })
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (rows) {
+          var map = {};
+          rows.forEach(function (x) { map[x.key] = x.value; });
+          els.forEach(function (el) {
+            var k = el.getAttribute("data-cms");
+            if (map[k] != null && map[k] !== "") el.innerHTML = esc(map[k]).replace(/\r\n|\r|\n/g, "<br />");
+          });
+        })
+        .catch(function () {});
     })();
   </script>
 </body>
