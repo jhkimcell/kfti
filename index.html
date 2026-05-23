@@ -395,10 +395,12 @@
 
       // ===== 메인 히어로 슬라이드 (관리자에서 편집) =====
       // 테이블이 없거나 비어있을 때 보여줄 기본 슬라이드
+      // 슬라이드에 개별 배경 이미지가 없을 때 사용할 기본 배경
+      const HERO_DEFAULT_IMG = "https://placehold.co/1600x700/1a2db4/3a4fd6?text=NEXT-K";
       const HERO_FALLBACK = [
-        { tag: "NEXT-K Initiative Forum", title: "세계를 주도하는\nK-선도국가로", subtitle: "재단법인 K-선도국가 미래포럼은 대한민국의 문화적 저력을 결집하는 공공 플랫폼입니다.", button_label: "사업분야 보기", button_link: "research.html", image_url: "" },
-        { tag: "K-CULTURE · K-CONTENT", title: "문화가 곧\n국가 경쟁력입니다", subtitle: "K-콘텐츠·푸드·뷰티·바이오, 문화 주도 성장으로 미래를 엽니다.", button_label: "자세히 보기", button_link: "research.html", image_url: "" },
-        { tag: "PUBLIC PLATFORM", title: "대한민국 문화 창달의\n중심, NEXT-K", subtitle: "민·관·학을 잇는 협력 네트워크로 'K-컬처'의 글로벌 위상을 높입니다.", button_label: "재단 소개", button_link: "about.html", image_url: "" },
+        { tag: "NEXT-K Initiative Forum", title: "세계를 주도하는\nK-선도국가로", subtitle: "재단법인 K-선도국가 미래포럼은 대한민국의 문화적 저력을 결집하는 공공 플랫폼입니다.", button_label: "사업분야 보기", button_link: "research.html", image_url: "https://placehold.co/1600x700/1a2db4/3a4fd6?text=NEXT-K" },
+        { tag: "K-CULTURE · K-CONTENT", title: "문화가 곧\n국가 경쟁력입니다", subtitle: "K-콘텐츠·푸드·뷰티·바이오, 문화 주도 성장으로 미래를 엽니다.", button_label: "자세히 보기", button_link: "research.html", image_url: "https://placehold.co/1600x700/111b6e/c8a45c?text=K-Culture" },
+        { tag: "PUBLIC PLATFORM", title: "대한민국 문화 창달의\n중심, NEXT-K", subtitle: "민·관·학을 잇는 협력 네트워크로 'K-컬처'의 글로벌 위상을 높입니다.", button_label: "재단 소개", button_link: "about.html", image_url: "https://placehold.co/1600x700/1a2db4/3a4fd6?text=Public+Platform" },
       ];
 
       function initHeroSlider() {
@@ -429,7 +431,8 @@
         const wrap = document.getElementById("heroSlides");
         if (!wrap) return;
         wrap.innerHTML = slides.map(function (s, i) {
-          const bg = s.image_url ? ' style="background-image:url(\'' + escapeHtml(s.image_url) + '\')"' : "";
+          const img = s.image_url || HERO_DEFAULT_IMG; // 이미지 미지정 시 기본 배경
+          const bg = ' style="background-image:url(\'' + escapeHtml(img) + '\')"';
           const titleHtml = escapeHtml(s.title || "").replace(/\r\n|\r|\n/g, "<br />");
           const tag = s.tag ? '<span class="tag">' + escapeHtml(s.tag) + "</span>" : "";
           const sub = s.subtitle ? "<p>" + escapeHtml(s.subtitle) + "</p>" : "";
