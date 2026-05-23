@@ -234,23 +234,17 @@
       </div>
 
       <div class="tab-panel active" id="notice">
-        <ul class="post-list">
-          <li><div class="post-title"><span class="badge">공지</span><span class="txt">2026년도 KFTI 신진연구자 지원사업 공모 안내</span></div><span class="post-date">2026.05.20</span></li>
-          <li><div class="post-title"><span class="badge">공지</span><span class="txt">제3연구동 정전 작업에 따른 시스템 점검 안내</span></div><span class="post-date">2026.05.14</span></li>
-          <li><div class="post-title"><span class="badge">행사</span><span class="txt">2026 미래기술 포럼 사전등록 마감 임박</span></div><span class="post-date">2026.05.09</span></li>
-          <li><div class="post-title"><span class="badge">공지</span><span class="txt">연구장비 공동활용 신청 절차 개정 안내</span></div><span class="post-date">2026.04.30</span></li>
-          <li><div class="post-title"><span class="badge">채용</span><span class="txt">우주항공연구본부 박사후연구원(Post-Doc) 모집</span></div><span class="post-date">2026.04.22</span></li>
+        <!-- 공지사항: Supabase에서 최신 4건 불러옴 (아래 스크립트가 채움) -->
+        <ul class="post-list" id="notice-list">
+          <li><div class="post-title"><span class="txt">공지를 불러오는 중…</span></div></li>
         </ul>
         <div class="board-more"><a href="news.html" data-ko="공지사항 더보기 +" data-en="More Notices +">공지사항 더보기 +</a></div>
       </div>
 
       <div class="tab-panel" id="press">
-        <ul class="post-list">
-          <li><div class="post-title"><span class="badge">보도</span><span class="txt">KFTI, 차세대 이차전지 핵심소재 국산화 성공</span></div><span class="post-date">2026.05.18</span></li>
-          <li><div class="post-title"><span class="badge">보도</span><span class="txt">초거대 AI 기반 신약 후보물질 발굴 플랫폼 공개</span></div><span class="post-date">2026.05.11</span></li>
-          <li><div class="post-title"><span class="badge">보도</span><span class="txt">한-EU 공동연구 협약 체결… 친환경에너지 협력 확대</span></div><span class="post-date">2026.05.02</span></li>
-          <li><div class="post-title"><span class="badge">보도</span><span class="txt">국산 소형위성 발사체 핵심엔진 연소시험 성공</span></div><span class="post-date">2026.04.25</span></li>
-          <li><div class="post-title"><span class="badge">보도</span><span class="txt">KFTI 연구진, 세계 최고 권위 학술지 표지논문 게재</span></div><span class="post-date">2026.04.17</span></li>
+        <!-- 보도자료: Supabase에서 최신 4건 불러옴 (아래 스크립트가 채움) -->
+        <ul class="post-list" id="press-list">
+          <li><div class="post-title"><span class="txt">불러오는 중…</span></div></li>
         </ul>
         <div class="board-more"><a href="news.html" data-ko="보도자료 더보기 +" data-en="More Press +">보도자료 더보기 +</a></div>
       </div>
@@ -423,6 +417,70 @@
         entries.forEach((e) => { if (e.isIntersecting) { animate(e.target); obs.unobserve(e.target); } });
       }, { threshold: 0.4 });
       nums.forEach((n) => obs.observe(n));
+    })();
+  </script>
+
+  <!-- ===== Supabase 게시판 연동 (홈 미리보기: 각 최신 4건) ===== -->
+  <script>
+    (function () {
+      // 공개(publishable) 키 — 브라우저에 노출돼도 안전합니다. (RLS가 쓰기를 막아줌)
+      const SUPABASE_URL = "https://vemjnkustbmhlnilrfek.supabase.co";
+      const SUPABASE_KEY = "sb_publishable_eibRqfTfb-3M4ZCmqatQlg_FN6dsM7T";
+
+      function escapeHtml(s) {
+        return String(s).replace(/[&<>"']/g, function (c) {
+          return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+        });
+      }
+      function fmtDate(iso) {
+        const d = new Date(iso);
+        const p = (n) => String(n).padStart(2, "0");
+        return d.getFullYear() + "." + p(d.getMonth() + 1) + "." + p(d.getDate());
+      }
+
+      // category(notice/press)별로 노출된 글을 불러와 해당 목록(elId)에 그립니다.
+      async function loadBoard(elId, category, badge, limit) {
+        const list = document.getElementById(elId);
+        if (!list) return;
+        try {
+          let url =
+            SUPABASE_URL +
+            "/rest/v1/notices?select=title,created_at&published=eq.true&category=eq." +
+            category +
+            "&order=created_at.desc";
+          if (limit) url += "&limit=" + limit;
+          const res = await fetch(url, {
+            headers: { apikey: SUPABASE_KEY, Authorization: "Bearer " + SUPABASE_KEY },
+          });
+          if (!res.ok) throw new Error("HTTP " + res.status);
+          const rows = await res.json();
+
+          if (!rows.length) {
+            list.innerHTML =
+              '<li><div class="post-title"><span class="txt">등록된 글이 없습니다.</span></div></li>';
+            return;
+          }
+          list.innerHTML = rows
+            .map(function (n) {
+              return (
+                '<li><div class="post-title"><span class="badge">' +
+                badge +
+                '</span><span class="txt">' +
+                escapeHtml(n.title) +
+                '</span></div><span class="post-date">' +
+                fmtDate(n.created_at) +
+                "</span></li>"
+              );
+            })
+            .join("");
+        } catch (e) {
+          list.innerHTML =
+            '<li><div class="post-title"><span class="txt">불러오지 못했습니다.</span></div></li>';
+        }
+      }
+
+      loadBoard("notice-list", "notice", "공지", 4); // 공지사항 최신 4건
+      loadBoard("press-list", "press", "보도", 4); // 보도자료 최신 4건
     })();
   </script>
 </body>
