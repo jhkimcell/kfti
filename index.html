@@ -3,18 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>한국미래기술연구원 (KFTI) | Korea Future Technology Institute</title>
-  <meta name="description" content="대한민국 과학기술의 미래를 선도하는 한국미래기술연구원(KFTI) 공식 홈페이지" />
+  <title>재단법인 K-선도국가 미래포럼 (NEXT-K) | NEXT-K Initiative Forum</title>
+  <meta name="description" content="대한민국을 세계를 주도하는 'K-선도국가'로 이끄는 문화 창달의 공공 플랫폼, 재단법인 K-선도국가 미래포럼(NEXT-K)" />
 
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
   <link rel="stylesheet" as="style" crossorigin
     href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
   <style>
     :root {
-      --navy: #1a3a5c; --navy-dark: #112a44; --navy-light: #2a5580;
-      --gold: #c8a45c; --gold-dark: #b08d42; --bg-soft: #f4f6f9;
+      --navy: #1a2db4; --navy-dark: #111b6e; --navy-light: #3a4fd6;
+      --gold: #c8a45c; --gold-dark: #b08d42; --bg-soft: #f3f5fb;
       --line: #e3e7ec; --text: #1f2a37; --muted: #66727f; --white: #ffffff;
-      --shadow: 0 6px 24px rgba(17, 42, 68, 0.10); --radius: 14px; --maxw: 1180px;
+      --shadow: 0 6px 24px rgba(17, 27, 110, 0.10); --radius: 14px; --maxw: 1180px;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
@@ -56,9 +56,9 @@
     .hamburger span { width: 24px; height: 2px; background: var(--navy); border-radius: 2px; transition: 0.25s; }
     .hero { position: relative; margin-top: 76px; height: 600px; overflow: hidden; background: var(--navy-dark); }
     .slide { position: absolute; inset: 0; opacity: 0; transition: opacity 1s ease; background-size: cover; background-position: center; display: flex; align-items: center; }
-    .slide::before { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(17,42,68,0.88) 0%, rgba(17,42,68,0.55) 55%, rgba(17,42,68,0.35) 100%); }
+    .slide::before { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(17,27,110,0.90) 0%, rgba(17,27,110,0.58) 55%, rgba(17,27,110,0.38) 100%); }
     .slide.active { opacity: 1; }
-    .slide-content { position: relative; color: var(--white); max-width: 640px; }
+    .slide-content { position: relative; color: var(--white); max-width: 660px; }
     .slide-content .tag { display: inline-block; color: var(--gold); font-weight: 700; letter-spacing: 0.15em; font-size: 0.85rem; margin-bottom: 18px; }
     .slide-content h1 { font-size: 2.9rem; font-weight: 800; line-height: 1.25; letter-spacing: -0.03em; margin-bottom: 18px; }
     .slide-content p { font-size: 1.12rem; color: rgba(255, 255, 255, 0.85); margin-bottom: 30px; }
@@ -81,7 +81,7 @@
     .post-list li:last-child { border-bottom: none; }
     .post-list li:hover { background: var(--bg-soft); }
     .post-title { display: flex; align-items: center; gap: 14px; min-width: 0; }
-    .post-title .badge { flex-shrink: 0; font-size: 0.72rem; font-weight: 700; padding: 4px 10px; border-radius: 6px; background: rgba(26, 58, 92, 0.08); color: var(--navy); }
+    .post-title .badge { flex-shrink: 0; font-size: 0.72rem; font-weight: 700; padding: 4px 10px; border-radius: 6px; background: rgba(26, 45, 180, 0.08); color: var(--navy); }
     .post-title .txt { font-weight: 600; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .post-date { flex-shrink: 0; color: var(--muted); font-size: 0.9rem; }
     .board-more { text-align: center; margin-top: 28px; }
@@ -93,12 +93,10 @@
     .field-card .ic { width: 72px; height: 72px; margin: 0 auto 22px; border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 2rem; background: linear-gradient(135deg, var(--navy), var(--navy-light)); color: var(--gold); }
     .field-card h3 { font-size: 1.2rem; color: var(--navy); margin-bottom: 10px; font-weight: 800; }
     .field-card p { color: var(--muted); font-size: 0.95rem; }
-    .stats { background: linear-gradient(rgba(17,42,68,0.92), rgba(17,42,68,0.92)), url("https://placehold.co/1600x500/1a3a5c/1a3a5c"); background-size: cover; background-position: center; color: var(--white); }
-    .stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; text-align: center; }
-    .stat-item { padding: 14px; }
-    .stat-num { font-size: 3rem; font-weight: 900; color: var(--gold); letter-spacing: -0.02em; line-height: 1; }
-    .stat-num .unit { font-size: 1.3rem; margin-left: 4px; font-weight: 700; }
-    .stat-label { margin-top: 14px; font-size: 1.05rem; color: rgba(255,255,255,0.85); font-weight: 500; }
+    .vision { background: linear-gradient(rgba(17,27,110,0.94), rgba(17,27,110,0.94)), url("https://placehold.co/1600x500/1a2db4/1a2db4"); background-size: cover; background-position: center; color: var(--white); }
+    .vision .inner { max-width: 820px; margin: 0 auto; text-align: center; }
+    .vision h2 { font-size: 2rem; font-weight: 800; color: #fff; letter-spacing: -0.02em; line-height: 1.4; }
+    .vision p { margin-top: 22px; font-size: 1.1rem; color: rgba(255,255,255,0.85); line-height: 1.9; }
     .footer { background: var(--navy-dark); color: rgba(255, 255, 255, 0.7); padding: 60px 0 30px; }
     .footer-top { display: grid; grid-template-columns: 1fr auto; gap: 40px; padding-bottom: 36px; border-bottom: 1px solid rgba(255, 255, 255, 0.12); }
     .footer .f-logo { font-size: 1.4rem; font-weight: 900; color: var(--white); margin-bottom: 16px; }
@@ -132,8 +130,7 @@
       .slide-content h1 { font-size: 2rem; }
       .slide-content p { font-size: 1rem; }
       .hero-arrow { display: none; }
-      .stat-grid { grid-template-columns: repeat(2, 1fr); gap: 36px 16px; }
-      .stat-num { font-size: 2.4rem; }
+      .vision h2 { font-size: 1.5rem; }
       .footer-top { grid-template-columns: 1fr; gap: 30px; }
       .post-list li { padding: 16px 18px; }
       .post-title .badge { display: none; }
@@ -146,15 +143,15 @@
   <!-- ===================== 헤더 ===================== -->
   <header class="header">
     <div class="container header-inner">
-      <a href="index.html" class="logo" aria-label="한국미래기술연구원 홈">
-        <span class="mark">KF<span>T</span>I</span>
-        <span class="ko">한국미래기술연구원</span>
+      <a href="index.html" class="logo" aria-label="K-선도국가 미래포럼 홈">
+        <span class="mark">NEXT-<span>K</span></span>
+        <span class="ko">K-선도국가 미래포럼</span>
       </a>
 
       <nav class="main-nav" id="mainNav">
         <ul>
-          <li><a href="about.html" data-ko="기관소개" data-en="About">기관소개</a></li>
-          <li><a href="research.html" data-ko="연구분야" data-en="Research">연구분야</a></li>
+          <li><a href="about.html" data-ko="재단소개" data-en="About">재단소개</a></li>
+          <li><a href="research.html" data-ko="사업분야" data-en="Programs">사업분야</a></li>
           <li><a href="news.html" data-ko="소식" data-en="News">소식</a></li>
         </ul>
       </nav>
@@ -178,35 +175,35 @@
 
   <!-- ===================== 히어로 슬라이드 ===================== -->
   <section class="hero" id="hero">
-    <div class="slide active" style="background-image:url('https://placehold.co/1600x700/1a3a5c/2a5580?text=KFTI+Research')">
+    <div class="slide active" style="background-image:url('https://placehold.co/1600x700/1a2db4/3a4fd6?text=NEXT-K')">
       <div class="container">
         <div class="slide-content">
-          <span class="tag">KOREA FUTURE TECHNOLOGY INSTITUTE</span>
-          <h1 data-ko="미래를 여는 과학,&#10;세상을 바꾸는 기술" data-en="Science that opens the future,&#10;Technology that changes the world">미래를 여는 과학,<br />세상을 바꾸는 기술</h1>
-          <p data-ko="한국미래기술연구원은 대한민국 과학기술의 내일을 설계합니다." data-en="KFTI designs the future of Korea's science and technology.">한국미래기술연구원은 대한민국 과학기술의 내일을 설계합니다.</p>
-          <a href="research.html" class="btn btn-gold" data-ko="연구분야 보기" data-en="Explore Research">연구분야 보기</a>
+          <span class="tag">NEXT-K Initiative Forum</span>
+          <h1 data-ko="세계를 주도하는&#10;K-선도국가로" data-en="Toward a K-pioneer nation&#10;that leads the world">세계를 주도하는<br />K-선도국가로</h1>
+          <p data-ko="재단법인 K-선도국가 미래포럼은 대한민국의 문화적 저력을 결집하는 공공 플랫폼입니다." data-en="NEXT-K is a public platform that brings together Korea's cultural strengths.">재단법인 K-선도국가 미래포럼은 대한민국의 문화적 저력을 결집하는 공공 플랫폼입니다.</p>
+          <a href="research.html" class="btn btn-gold" data-ko="사업분야 보기" data-en="Our Programs">사업분야 보기</a>
         </div>
       </div>
     </div>
 
-    <div class="slide" style="background-image:url('https://placehold.co/1600x700/112a44/c8a45c?text=Innovation')">
+    <div class="slide" style="background-image:url('https://placehold.co/1600x700/111b6e/c8a45c?text=K-Culture')">
       <div class="container">
         <div class="slide-content">
-          <span class="tag">RESEARCH & INNOVATION</span>
-          <h1 data-ko="끊임없는 연구로&#10;지속가능한 내일을" data-en="Endless research&#10;for a sustainable tomorrow">끊임없는 연구로<br />지속가능한 내일을</h1>
-          <p data-ko="인공지능부터 우주항공까지, 인류의 난제에 도전합니다." data-en="From AI to aerospace, we challenge humanity's hardest problems.">인공지능부터 우주항공까지, 인류의 난제에 도전합니다.</p>
+          <span class="tag">K-CULTURE · K-CONTENT</span>
+          <h1 data-ko="문화가 곧&#10;국가 경쟁력입니다" data-en="Culture is&#10;national competitiveness">문화가 곧<br />국가 경쟁력입니다</h1>
+          <p data-ko="K-콘텐츠·푸드·뷰티·바이오, 문화 주도 성장으로 미래를 엽니다." data-en="K-content, food, beauty, bio — opening the future through culture-led growth.">K-콘텐츠·푸드·뷰티·바이오, 문화 주도 성장으로 미래를 엽니다.</p>
           <a href="research.html" class="btn btn-ghost" data-ko="자세히 보기" data-en="Learn More">자세히 보기</a>
         </div>
       </div>
     </div>
 
-    <div class="slide" style="background-image:url('https://placehold.co/1600x700/1a3a5c/4a7aa8?text=Together')">
+    <div class="slide" style="background-image:url('https://placehold.co/1600x700/1a2db4/3a4fd6?text=Public+Platform')">
       <div class="container">
         <div class="slide-content">
-          <span class="tag">GLOBAL PARTNERSHIP</span>
-          <h1 data-ko="대한민국 과학기술의&#10;중심, KFTI" data-en="At the heart of&#10;Korean science, KFTI">대한민국 과학기술의<br />중심, KFTI</h1>
-          <p data-ko="세계 유수 연구기관과 협력하여 미래 핵심기술을 선도합니다." data-en="We lead future core technologies with the world's leading institutes.">세계 유수 연구기관과 협력하여 미래 핵심기술을 선도합니다.</p>
-          <a href="about.html" class="btn btn-ghost" data-ko="기관 소개" data-en="About KFTI">기관 소개</a>
+          <span class="tag">PUBLIC PLATFORM</span>
+          <h1 data-ko="대한민국 문화 창달의&#10;중심, NEXT-K" data-en="At the heart of&#10;Korea's cultural growth, NEXT-K">대한민국 문화 창달의<br />중심, NEXT-K</h1>
+          <p data-ko="민·관·학을 잇는 협력 네트워크로 'K-컬처'의 글로벌 위상을 높입니다." data-en="We elevate K-culture's global standing through a public-private-academic network.">민·관·학을 잇는 협력 네트워크로 'K-컬처'의 글로벌 위상을 높입니다.</p>
+          <a href="about.html" class="btn btn-ghost" data-ko="재단 소개" data-en="About NEXT-K">재단 소개</a>
         </div>
       </div>
     </div>
@@ -251,64 +248,46 @@
     </div>
   </section>
 
-  <!-- ===================== 주요 연구분야 ===================== -->
+  <!-- ===================== 주요 사업분야 ===================== -->
   <section class="section" id="fields">
     <div class="container">
       <div class="section-head">
-        <span class="eyebrow">RESEARCH AREAS</span>
-        <h2 data-ko="주요 연구분야" data-en="Key Research Areas">주요 연구분야</h2>
+        <span class="eyebrow">PROGRAMS</span>
+        <h2 data-ko="주요 사업분야" data-en="Key Programs">주요 사업분야</h2>
       </div>
 
       <div class="field-grid">
-        <a class="field-card" href="research.html#ai">
-          <div class="ic">🤖</div>
-          <h3 data-ko="인공지능" data-en="Artificial Intelligence">인공지능</h3>
-          <p data-ko="초거대 AI와 신뢰가능한 기계학습으로 산업 혁신을 이끕니다." data-en="Driving industrial innovation with large-scale, trustworthy AI.">초거대 AI와 신뢰가능한 기계학습으로 산업 혁신을 이끕니다.</p>
+        <a class="field-card" href="research.html#edu">
+          <div class="ic">🎓</div>
+          <h3 data-ko="문화 연구·교육" data-en="Research & Education">문화 연구·교육</h3>
+          <p data-ko="K-선도국가 실현을 위한 문화 역량 연구와 미래 세대 교육을 추진합니다." data-en="Cultural research and next-generation education for a K-pioneer nation.">K-선도국가 실현을 위한 문화 역량 연구와 미래 세대 교육을 추진합니다.</p>
         </a>
-        <a class="field-card" href="research.html#bio">
-          <div class="ic">🧬</div>
-          <h3 data-ko="바이오·헬스" data-en="Bio & Health">바이오·헬스</h3>
-          <p data-ko="유전체 분석과 신약 개발로 인류의 건강한 삶을 연구합니다." data-en="Researching healthier lives through genomics and drug discovery.">유전체 분석과 신약 개발로 인류의 건강한 삶을 연구합니다.</p>
+        <a class="field-card" href="research.html#campaign">
+          <div class="ic">📣</div>
+          <h3 data-ko="문화 캠페인·확산" data-en="Campaign & Outreach">문화 캠페인·확산</h3>
+          <p data-ko="대국민 문화 캠페인과 공익 콘텐츠로 문화적 공감대를 넓힙니다." data-en="Public campaigns and public-interest content to broaden cultural consensus.">대국민 문화 캠페인과 공익 콘텐츠로 문화적 공감대를 넓힙니다.</p>
         </a>
-        <a class="field-card" href="research.html#energy">
-          <div class="ic">🌱</div>
-          <h3 data-ko="친환경에너지" data-en="Green Energy">친환경에너지</h3>
-          <p data-ko="수소·이차전지·탄소중립 기술로 지속가능한 미래를 설계합니다." data-en="Designing a sustainable future with hydrogen and battery tech.">수소·이차전지·탄소중립 기술로 지속가능한 미래를 설계합니다.</p>
+        <a class="field-card" href="research.html#archive">
+          <div class="ic">🗂️</div>
+          <h3 data-ko="지식 자산·플랫폼" data-en="Knowledge & Platform">지식 자산·플랫폼</h3>
+          <p data-ko="연구 성과를 기록·보존하고 개방형 온·오프라인 플랫폼을 운영합니다." data-en="Recording knowledge assets and operating open on/offline platforms.">연구 성과를 기록·보존하고 개방형 온·오프라인 플랫폼을 운영합니다.</p>
         </a>
-        <a class="field-card" href="research.html#space">
-          <div class="ic">🚀</div>
-          <h3 data-ko="우주항공" data-en="Aerospace">우주항공</h3>
-          <p data-ko="발사체와 위성 핵심기술로 대한민국 우주시대를 엽니다." data-en="Opening Korea's space era with launch vehicle and satellite tech.">발사체와 위성 핵심기술로 대한민국 우주시대를 엽니다.</p>
+        <a class="field-card" href="research.html#network">
+          <div class="ic">🤝</div>
+          <h3 data-ko="문화 협력 네트워크" data-en="Cultural Network">문화 협력 네트워크</h3>
+          <p data-ko="민·관·학과 국내외 유관기관을 잇는 문화 협력 네트워크를 구축합니다." data-en="Building a cultural network across public, private, academic and global partners.">민·관·학과 국내외 유관기관을 잇는 문화 협력 네트워크를 구축합니다.</p>
         </a>
       </div>
     </div>
   </section>
 
-  <!-- ===================== 숫자로 보는 KFTI ===================== -->
-  <section class="section stats" id="stats">
+  <!-- ===================== 비전/미션 ===================== -->
+  <section class="section vision" id="vision">
     <div class="container">
-      <div class="section-head">
-        <span class="eyebrow" style="color:var(--gold)">ACHIEVEMENTS</span>
-        <h2 style="color:#fff" data-ko="숫자로 보는 KFTI" data-en="KFTI in Numbers">숫자로 보는 KFTI</h2>
-      </div>
-
-      <div class="stat-grid">
-        <div class="stat-item">
-          <div class="stat-num" data-target="1234">0</div>
-          <div class="stat-label" data-ko="누적 논문 (편)" data-en="Papers Published">누적 논문 (편)</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-num" data-target="567">0</div>
-          <div class="stat-label" data-ko="등록 특허 (건)" data-en="Registered Patents">등록 특허 (건)</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-num" data-target="890">0</div>
-          <div class="stat-label" data-ko="연구 인력 (명)" data-en="Researchers">연구 인력 (명)</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-num" data-target="30">0</div>
-          <div class="stat-label" data-ko="설립 (주년)" data-en="Years Since Founding">설립 (주년)</div>
-        </div>
+      <div class="inner">
+        <span class="eyebrow" style="color:var(--gold)">OUR MISSION</span>
+        <h2 data-ko="문화가 국가 발전의 핵심 경쟁력이 되도록" data-en="Making culture the core of national growth">문화가 국가 발전의 핵심 경쟁력이 되도록</h2>
+        <p data-ko="대한민국의 발전 경험과 문화적 역량을 체계적으로 정리·확산하여, 세계를 주도하는 'K-선도국가'로 나아가는 문화 창달의 공공 플랫폼이 되겠습니다." data-en="We will systematically organize and spread Korea's development experience and cultural strengths to become a public platform for a world-leading K-pioneer nation.">대한민국의 발전 경험과 문화적 역량을 체계적으로 정리·확산하여, 세계를 주도하는 'K-선도국가'로 나아가는 문화 창달의 공공 플랫폼이 되겠습니다.</p>
       </div>
     </div>
   </section>
@@ -318,11 +297,11 @@
     <div class="container">
       <div class="footer-top">
         <div>
-          <div class="f-logo">KF<span>T</span>I</div>
+          <div class="f-logo">NEXT-<span>K</span></div>
           <address>
-            (34113) 대전광역시 유성구 미래기술로 100<br />
-            대표전화 042-000-0000 &nbsp;|&nbsp; 팩스 042-000-0001<br />
-            이메일 contact@kfti.re.kr
+            재단법인 K-선도국가 미래포럼 (NEXT-K)<br />
+            (00000) 서울특별시 ㅇㅇ구 ㅇㅇ로 00 &nbsp;|&nbsp; 대표전화 02-0000-0000<br />
+            이메일 contact@nextk.or.kr
           </address>
         </div>
         <div>
@@ -335,7 +314,7 @@
         </div>
       </div>
       <div class="footer-bottom">
-        © 2026 한국미래기술연구원 (Korea Future Technology Institute). All rights reserved.
+        © 2026 재단법인 K-선도국가 미래포럼 (NEXT-K Initiative Forum). All rights reserved.
       </div>
     </div>
   </footer>
@@ -398,25 +377,6 @@
           if (panel) panel.classList.add("active");
         });
       });
-    })();
-    /* 통계 카운트업 */
-    (function () {
-      const nums = document.querySelectorAll(".stat-num");
-      if (!nums.length) return;
-      function animate(el) {
-        const target = +el.dataset.target; const dur = 1800, start = performance.now();
-        function tick(now) {
-          const p = Math.min((now - start) / dur, 1);
-          const eased = 1 - Math.pow(1 - p, 3);
-          el.textContent = Math.floor(eased * target).toLocaleString("ko-KR");
-          if (p < 1) requestAnimationFrame(tick); else el.textContent = target.toLocaleString("ko-KR");
-        }
-        requestAnimationFrame(tick);
-      }
-      const obs = new IntersectionObserver((entries) => {
-        entries.forEach((e) => { if (e.isIntersecting) { animate(e.target); obs.unobserve(e.target); } });
-      }, { threshold: 0.4 });
-      nums.forEach((n) => obs.observe(n));
     })();
   </script>
 

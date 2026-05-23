@@ -46,7 +46,7 @@ export default function LoginPage() {
       <div className="w-full max-w-sm">
         <div className="mb-8 text-center">
           <h1 className="text-xl font-bold text-slate-900">
-            한국미래기술연구원
+            K-선도국가 미래포럼
           </h1>
           <p className="mt-1 text-sm text-slate-500">관리자 로그인</p>
         </div>

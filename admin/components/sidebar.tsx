@@ -24,7 +24,7 @@ export default function Sidebar({ email }: { email: string }) {
   return (
     <aside className="flex w-60 shrink-0 flex-col border-r border-slate-200 bg-white">
       <div className="border-b border-slate-200 px-6 py-5">
-        <p className="text-sm font-bold text-slate-900">한국미래기술연구원</p>
+        <p className="text-sm font-bold text-slate-900">K-선도국가 미래포럼</p>
         <p className="mt-0.5 text-xs text-slate-400">관리자</p>
       </div>
 

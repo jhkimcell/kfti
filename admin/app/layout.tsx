@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "한국미래기술연구원(KFTI) 관리자",
-  description: "한국미래기술연구원 사이트 관리자 페이지",
+  title: "K-선도국가 미래포럼(NEXT-K) 관리자",
+  description: "재단법인 K-선도국가 미래포럼 사이트 관리자 페이지",
 };
 
 export default function RootLayout({
