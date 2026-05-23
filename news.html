@@ -90,7 +90,9 @@
     .sns a:hover { background: var(--gold); color: var(--navy-dark); }
     .sns svg { width: 20px; height: 20px; }
     .footer-bottom { padding-top: 24px; font-size: 0.85rem; color: rgba(255, 255, 255, 0.5); text-align: center; }
-    .page-hero { margin-top: 76px; background: linear-gradient(rgba(17,27,110,0.85), rgba(17,27,110,0.85)), url("https://placehold.co/1600x400/1a2db4/3a4fd6"); background-size: cover; background-position: center; color: var(--white); text-align: center; padding: 84px 0; }
+    .page-hero { position: relative; overflow: hidden; margin-top: 76px; background: linear-gradient(135deg, var(--navy) 0%, var(--navy-dark) 100%); color: var(--white); text-align: center; padding: 84px 0; }
+    .page-hero::before { content: "NEXT-K Initiative Forum"; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; white-space: nowrap; font-weight: 900; letter-spacing: -0.02em; font-size: clamp(2.2rem, 11vw, 6.5rem); color: rgba(255, 255, 255, 0.08); pointer-events: none; }
+    .page-hero .container { position: relative; z-index: 1; }
     .page-hero h1 { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.02em; }
     .page-hero .crumb { margin-top: 12px; color: rgba(255, 255, 255, 0.7); font-size: 0.92rem; }
     .page-hero .crumb a:hover { color: var(--gold); }

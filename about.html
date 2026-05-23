@@ -68,7 +68,9 @@
     .sns a:hover { background: var(--gold); color: var(--navy-dark); }
     .sns svg { width: 20px; height: 20px; }
     .footer-bottom { padding-top: 24px; font-size: 0.85rem; color: rgba(255, 255, 255, 0.5); text-align: center; }
-    .page-hero { margin-top: 76px; background: linear-gradient(rgba(17,27,110,0.85), rgba(17,27,110,0.85)), url("https://placehold.co/1600x400/1a2db4/3a4fd6"); background-size: cover; background-position: center; color: var(--white); text-align: center; padding: 84px 0; }
+    .page-hero { position: relative; overflow: hidden; margin-top: 76px; background: linear-gradient(135deg, var(--navy) 0%, var(--navy-dark) 100%); color: var(--white); text-align: center; padding: 84px 0; }
+    .page-hero::before { content: "NEXT-K Initiative Forum"; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; white-space: nowrap; font-weight: 900; letter-spacing: -0.02em; font-size: clamp(2.2rem, 11vw, 6.5rem); color: rgba(255, 255, 255, 0.08); pointer-events: none; }
+    .page-hero .container { position: relative; z-index: 1; }
     .page-hero h1 { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.02em; }
     .page-hero .crumb { margin-top: 12px; color: rgba(255, 255, 255, 0.7); font-size: 0.92rem; }
     .page-hero .crumb a:hover { color: var(--gold); }
@@ -78,6 +80,12 @@
     .greeting p { color: var(--muted); margin-bottom: 16px; }
     .greeting .sign { margin-top: 24px; font-weight: 700; color: var(--text); }
     .greeting .sign b { font-size: 1.1rem; color: var(--navy); margin-left: 8px; }
+    .logo-panel { width: 100%; aspect-ratio: 4 / 5; border-radius: var(--radius); box-shadow: var(--shadow); background: linear-gradient(135deg, var(--navy), var(--navy-dark)); color: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; padding: 24px; text-align: center; }
+    .logo-panel .lp-mark { font-size: clamp(2rem, 8vw, 2.8rem); font-weight: 900; letter-spacing: -0.03em; line-height: 1; }
+    .logo-panel .lp-mark span { color: var(--gold); }
+    .logo-panel .lp-divider { width: 40px; height: 3px; border-radius: 2px; background: var(--gold); }
+    .logo-panel .lp-sub { font-size: 0.82rem; font-weight: 700; letter-spacing: 0.06em; color: rgba(255, 255, 255, 0.85); }
+    .logo-panel .lp-ko { font-size: 0.8rem; color: rgba(255, 255, 255, 0.6); }
     .timeline { max-width: 760px; margin: 0 auto; }
     .timeline li { display: flex; gap: 28px; padding: 18px 4px; border-bottom: 1px solid var(--line); }
     .timeline li:last-child { border-bottom: none; }
@@ -102,7 +110,7 @@
       .page-hero { padding: 56px 0; }
       .page-hero h1 { font-size: 2rem; }
       .greeting { grid-template-columns: 1fr; gap: 28px; }
-      .greeting img { max-width: 280px; margin: 0 auto; }
+      .greeting img, .greeting .logo-panel { max-width: 280px; margin: 0 auto; }
     }
     @media (max-width: 480px) { .field-grid { grid-template-columns: 1fr; } }
   </style>
@@ -157,7 +165,12 @@
         <h2 data-ko="설립 취지" data-en="Founding Purpose">설립 취지</h2>
       </div>
       <div class="greeting">
-        <img src="https://placehold.co/320x400/1a2db4/c8a45c?text=NEXT-K" alt="재단 대표 이미지" />
+        <div class="logo-panel">
+          <div class="lp-mark">NEXT-<span>K</span></div>
+          <div class="lp-divider"></div>
+          <div class="lp-sub">NEXT-K Initiative Forum</div>
+          <div class="lp-ko">재단법인 K-선도국가 미래포럼</div>
+        </div>
         <div>
           <h3 data-ko="문화가 곧 국가 경쟁력입니다.&#10;세계를 주도하는 'K-선도국가'로." data-en="Culture is national competitiveness.&#10;Toward a world-leading K-pioneer nation.">문화가 곧 국가 경쟁력입니다.<br />세계를 주도하는 'K-선도국가'로.</h3>
           <p>대한민국은 비약적인 경제 성장과 민주주의 성취를 바탕으로 세계가 주목하는 국가로 도약했습니다. 특히 국민의 창의성과 역동성이 집약된 ‘K-컬처’는 명실상부한 문화강국으로서의 위상을 증명하고 있으며, 이제 우리나라는 세계를 주도하는 ‘K-선도국가’로서의 역할을 요구받고 있습니다.</p>
