@@ -9,3 +9,17 @@ export type Notice = {
   category: Category; // notice(공지사항) / press(보도자료)
   created_at: string;
 };
+
+// 메인(홈) 히어로 슬라이드 (Supabase의 hero_slides 테이블과 동일)
+export type HeroSlide = {
+  id: string;
+  tag: string;
+  title: string;
+  subtitle: string;
+  button_label: string;
+  button_link: string;
+  image_url: string;
+  sort_order: number;
+  published: boolean;
+  created_at: string;
+};

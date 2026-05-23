@@ -176,46 +176,12 @@
 
   <!-- ===================== 히어로 슬라이드 ===================== -->
   <section class="hero" id="hero">
-    <div class="slide active" style="background-image:url('https://placehold.co/1600x700/1a2db4/3a4fd6?text=NEXT-K')">
-      <div class="container">
-        <div class="slide-content">
-          <span class="tag">NEXT-K Initiative Forum</span>
-          <h1 data-ko="세계를 주도하는&#10;K-선도국가로" data-en="Toward a K-pioneer nation&#10;that leads the world">세계를 주도하는<br />K-선도국가로</h1>
-          <p data-ko="재단법인 K-선도국가 미래포럼은 대한민국의 문화적 저력을 결집하는 공공 플랫폼입니다." data-en="NEXT-K is a public platform that brings together Korea's cultural strengths.">재단법인 K-선도국가 미래포럼은 대한민국의 문화적 저력을 결집하는 공공 플랫폼입니다.</p>
-          <a href="research.html" class="btn btn-gold" data-ko="사업분야 보기" data-en="Our Programs">사업분야 보기</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="slide" style="background-image:url('https://placehold.co/1600x700/111b6e/c8a45c?text=K-Culture')">
-      <div class="container">
-        <div class="slide-content">
-          <span class="tag">K-CULTURE · K-CONTENT</span>
-          <h1 data-ko="문화가 곧&#10;국가 경쟁력입니다" data-en="Culture is&#10;national competitiveness">문화가 곧<br />국가 경쟁력입니다</h1>
-          <p data-ko="K-콘텐츠·푸드·뷰티·바이오, 문화 주도 성장으로 미래를 엽니다." data-en="K-content, food, beauty, bio — opening the future through culture-led growth.">K-콘텐츠·푸드·뷰티·바이오, 문화 주도 성장으로 미래를 엽니다.</p>
-          <a href="research.html" class="btn btn-ghost" data-ko="자세히 보기" data-en="Learn More">자세히 보기</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="slide" style="background-image:url('https://placehold.co/1600x700/1a2db4/3a4fd6?text=Public+Platform')">
-      <div class="container">
-        <div class="slide-content">
-          <span class="tag">PUBLIC PLATFORM</span>
-          <h1 data-ko="대한민국 문화 창달의&#10;중심, NEXT-K" data-en="At the heart of&#10;Korea's cultural growth, NEXT-K">대한민국 문화 창달의<br />중심, NEXT-K</h1>
-          <p data-ko="민·관·학을 잇는 협력 네트워크로 'K-컬처'의 글로벌 위상을 높입니다." data-en="We elevate K-culture's global standing through a public-private-academic network.">민·관·학을 잇는 협력 네트워크로 'K-컬처'의 글로벌 위상을 높입니다.</p>
-          <a href="about.html" class="btn btn-ghost" data-ko="재단 소개" data-en="About NEXT-K">재단 소개</a>
-        </div>
-      </div>
-    </div>
+    <!-- 슬라이드: Supabase(hero_slides)에서 불러옴 (아래 스크립트가 채움) -->
+    <div id="heroSlides"></div>
 
     <button class="hero-arrow prev" id="prevSlide" aria-label="이전 슬라이드">‹</button>
     <button class="hero-arrow next" id="nextSlide" aria-label="다음 슬라이드">›</button>
-    <div class="hero-dots" id="heroDots">
-      <button class="dot active" aria-label="슬라이드 1"></button>
-      <button class="dot" aria-label="슬라이드 2"></button>
-      <button class="dot" aria-label="슬라이드 3"></button>
-    </div>
+    <div class="hero-dots" id="heroDots"></div>
   </section>
 
   <!-- ===================== 게시판 (공지 / 보도자료) ===================== -->
@@ -345,26 +311,7 @@
         });
       });
     })();
-    /* 히어로 슬라이드 */
-    (function () {
-      const slides = document.querySelectorAll(".slide");
-      const dots = document.querySelectorAll("#heroDots .dot");
-      if (slides.length < 2) return;
-      let cur = 0, timer;
-      function go(i) {
-        slides[cur].classList.remove("active"); dots[cur].classList.remove("active");
-        cur = (i + slides.length) % slides.length;
-        slides[cur].classList.add("active"); dots[cur].classList.add("active");
-      }
-      function start() { timer = setInterval(() => go(cur + 1), 5000); }
-      function reset() { clearInterval(timer); start(); }
-      dots.forEach((d, i) => d.addEventListener("click", () => { go(i); reset(); }));
-      const prev = document.getElementById("prevSlide");
-      const next = document.getElementById("nextSlide");
-      if (prev) prev.addEventListener("click", () => { go(cur - 1); reset(); });
-      if (next) next.addEventListener("click", () => { go(cur + 1); reset(); });
-      start();
-    })();
+    /* 히어로 슬라이드는 하단 Supabase 스크립트(loadHero)에서 동적으로 생성합니다. */
     /* 게시판 탭 */
     (function () {
       const tabBtns = document.querySelectorAll(".tab-btn");
@@ -445,6 +392,72 @@
 
       loadBoard("notice-list", "notice", "공지", 4); // 공지사항 최신 4건
       loadBoard("press-list", "press", "보도", 4); // 보도자료 최신 4건
+
+      // ===== 메인 히어로 슬라이드 (관리자에서 편집) =====
+      // 테이블이 없거나 비어있을 때 보여줄 기본 슬라이드
+      const HERO_FALLBACK = [
+        { tag: "NEXT-K Initiative Forum", title: "세계를 주도하는\nK-선도국가로", subtitle: "재단법인 K-선도국가 미래포럼은 대한민국의 문화적 저력을 결집하는 공공 플랫폼입니다.", button_label: "사업분야 보기", button_link: "research.html", image_url: "" },
+        { tag: "K-CULTURE · K-CONTENT", title: "문화가 곧\n국가 경쟁력입니다", subtitle: "K-콘텐츠·푸드·뷰티·바이오, 문화 주도 성장으로 미래를 엽니다.", button_label: "자세히 보기", button_link: "research.html", image_url: "" },
+        { tag: "PUBLIC PLATFORM", title: "대한민국 문화 창달의\n중심, NEXT-K", subtitle: "민·관·학을 잇는 협력 네트워크로 'K-컬처'의 글로벌 위상을 높입니다.", button_label: "재단 소개", button_link: "about.html", image_url: "" },
+      ];
+
+      function initHeroSlider() {
+        const slides = document.querySelectorAll("#heroSlides .slide");
+        const dots = document.querySelectorAll("#heroDots .dot");
+        const prev = document.getElementById("prevSlide");
+        const next = document.getElementById("nextSlide");
+        if (slides.length < 2) {
+          if (prev) prev.style.display = "none";
+          if (next) next.style.display = "none";
+          return;
+        }
+        let cur = 0, timer;
+        function go(i) {
+          slides[cur].classList.remove("active"); if (dots[cur]) dots[cur].classList.remove("active");
+          cur = (i + slides.length) % slides.length;
+          slides[cur].classList.add("active"); if (dots[cur]) dots[cur].classList.add("active");
+        }
+        function start() { timer = setInterval(function () { go(cur + 1); }, 5000); }
+        function reset() { clearInterval(timer); start(); }
+        dots.forEach(function (d, i) { d.addEventListener("click", function () { go(i); reset(); }); });
+        if (prev) prev.addEventListener("click", function () { go(cur - 1); reset(); });
+        if (next) next.addEventListener("click", function () { go(cur + 1); reset(); });
+        start();
+      }
+
+      function renderHero(slides) {
+        const wrap = document.getElementById("heroSlides");
+        if (!wrap) return;
+        wrap.innerHTML = slides.map(function (s, i) {
+          const bg = s.image_url ? ' style="background-image:url(\'' + escapeHtml(s.image_url) + '\')"' : "";
+          const titleHtml = escapeHtml(s.title || "").replace(/\r\n|\r|\n/g, "<br />");
+          const tag = s.tag ? '<span class="tag">' + escapeHtml(s.tag) + "</span>" : "";
+          const sub = s.subtitle ? "<p>" + escapeHtml(s.subtitle) + "</p>" : "";
+          const btn = s.button_label ? '<a href="' + escapeHtml(s.button_link || "#") + '" class="btn btn-gold">' + escapeHtml(s.button_label) + "</a>" : "";
+          return '<div class="slide' + (i === 0 ? " active" : "") + '"' + bg + '><div class="container"><div class="slide-content">' + tag + "<h1>" + titleHtml + "</h1>" + sub + btn + "</div></div></div>";
+        }).join("");
+        const dotsWrap = document.getElementById("heroDots");
+        if (dotsWrap) {
+          dotsWrap.innerHTML = slides.map(function (_, i) {
+            return '<button class="dot' + (i === 0 ? " active" : "") + '" aria-label="슬라이드 ' + (i + 1) + '"></button>';
+          }).join("");
+        }
+        initHeroSlider();
+      }
+
+      async function loadHero() {
+        let slides = [];
+        try {
+          const res = await fetch(
+            SUPABASE_URL + "/rest/v1/hero_slides?select=*&published=eq.true&order=sort_order.asc,created_at.asc",
+            { headers: { apikey: SUPABASE_KEY, Authorization: "Bearer " + SUPABASE_KEY } }
+          );
+          if (res.ok) slides = await res.json();
+        } catch (e) {}
+        if (!slides || !slides.length) slides = HERO_FALLBACK;
+        renderHero(slides);
+      }
+      loadHero();
     })();
   </script>
 </body>
