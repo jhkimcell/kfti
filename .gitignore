@@ -1,0 +1,9 @@
+# macOS
+.DS_Store
+
+# 에디터
+.vscode/
+*.swp
+
+# 임시 파일
+_*.png
