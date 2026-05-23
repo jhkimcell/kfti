@@ -445,7 +445,7 @@
         try {
           let url =
             SUPABASE_URL +
-            "/rest/v1/notices?select=title,created_at&published=eq.true&category=eq." +
+            "/rest/v1/notices?select=id,title,created_at&published=eq.true&category=eq." +
             category +
             "&order=created_at.desc";
           if (limit) url += "&limit=" + limit;
@@ -463,13 +463,16 @@
           list.innerHTML = rows
             .map(function (n) {
               return (
-                '<li><div class="post-title"><span class="badge">' +
+                '<li><a href="post.html?id=' +
+                encodeURIComponent(n.id) +
+                '" style="display:flex;align-items:center;justify-content:space-between;gap:16px;width:100%;color:inherit;">' +
+                '<div class="post-title"><span class="badge">' +
                 badge +
                 '</span><span class="txt">' +
                 escapeHtml(n.title) +
                 '</span></div><span class="post-date">' +
                 fmtDate(n.created_at) +
-                "</span></li>"
+                "</span></a></li>"
               );
             })
             .join("");
