@@ -7,3 +7,10 @@
 
 # 임시 파일
 _*.png
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+.env*
+!.env.example
