@@ -15,11 +15,13 @@ export async function saveSiteContent(
   } = await supabase.auth.getUser();
   if (!user) redirect("/admin/login");
 
-  const rows = CONTENT_FIELDS.map((f) => ({
+  // 폼에 포함된 항목만 저장 (블록 단위 저장 지원)
+  const rows = CONTENT_FIELDS.filter((f) => formData.has(f.key)).map((f) => ({
     key: f.key,
     value: String(formData.get(f.key) ?? "").trim(),
     updated_at: new Date().toISOString(),
   }));
+  if (rows.length === 0) return { ok: true };
 
   const { error } = await supabase
     .from("site_content")

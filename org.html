@@ -229,7 +229,7 @@
         <span class="eyebrow">CORE DIVISIONS</span>
         <h2 data-ko="핵심 본부" data-en="Core Divisions">핵심 본부</h2>
       </div>
-      <div class="field-grid grid-3">
+      <div class="field-grid grid-3" id="sec-org_division">
         <div class="field-card org-card">
           <div class="head">
             <div class="ic">🧠</div>
@@ -277,7 +277,7 @@
         <span class="eyebrow">SUPPORT & COMMITTEES</span>
         <h2 data-ko="지원 조직 및 위원회" data-en="Support & Committees">지원 조직 및 위원회</h2>
       </div>
-      <div class="field-grid">
+      <div class="field-grid" id="sec-org_support">
         <div class="field-card org-card">
           <div class="head">
             <div class="ic">🌐</div>
@@ -401,6 +401,35 @@
             var k = el.getAttribute("data-cms");
             if (map[k] != null && map[k] !== "") el.innerHTML = esc(map[k]).replace(/\r\n|\r|\n/g, "<br />");
           });
+        })
+        .catch(function () {});
+    })();
+  </script>
+
+  <!-- ===== 조직구성 항목(page_items) 연동 ===== -->
+  <script>
+    (function () {
+      var URL = "https://vemjnkustbmhlnilrfek.supabase.co";
+      var KEY = "sb_publishable_eibRqfTfb-3M4ZCmqatQlg_FN6dsM7T";
+      function esc(s){return String(s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c];});}
+      function renderCards(items) {
+        return items.map(function (it) {
+          var bl = (it.bullets || "").split(/\r?\n/).filter(Boolean);
+          var bullets = bl.length ? '<ul class="card-dots">' + bl.map(function (b) { return "<li>" + esc(b) + "</li>"; }).join("") + "</ul>" : "";
+          var tag = it.tag ? '<span class="role-tag">' + esc(it.tag) + "</span>" : "";
+          var body = it.body ? '<p style="color:var(--muted);font-size:0.92rem;margin-bottom:6px;">' + esc(it.body) + "</p>" : "";
+          return '<div class="field-card org-card"><div class="head"><div class="ic">' + esc(it.icon) + "</div><div>" + tag + "<h3>" + esc(it.title) + "</h3></div></div>" + body + bullets + "</div>";
+        }).join("");
+      }
+      fetch(URL + "/rest/v1/page_items?select=*&published=eq.true&section=in.(org_division,org_support)&order=sort_order.asc,created_at.asc", { headers: { apikey: KEY, Authorization: "Bearer " + KEY } })
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (items) {
+          var div = items.filter(function (x) { return x.section === "org_division"; });
+          var sup = items.filter(function (x) { return x.section === "org_support"; });
+          var c1 = document.getElementById("sec-org_division");
+          var c2 = document.getElementById("sec-org_support");
+          if (div.length && c1) c1.innerHTML = renderCards(div);
+          if (sup.length && c2) c2.innerHTML = renderCards(sup);
         })
         .catch(function () {});
     })();

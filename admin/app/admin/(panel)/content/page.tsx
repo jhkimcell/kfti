@@ -17,7 +17,8 @@ export default async function ContentPage() {
       <header className="mb-6">
         <h1 className="text-2xl font-bold text-slate-900">페이지 내용</h1>
         <p className="mt-1 text-sm text-slate-500">
-          재단소개·사업분야·조직구성의 주요 문구를 편집합니다. 저장하면 공개 페이지에 반영됩니다.
+          재단소개 문구를 블록 단위로 편집·저장합니다. 사업분야·조직구성 카드는 사이드바
+          <strong className="font-semibold text-slate-700"> 사업·조직 항목</strong> 메뉴에서 추가·수정·삭제하세요.
         </p>
       </header>
 
